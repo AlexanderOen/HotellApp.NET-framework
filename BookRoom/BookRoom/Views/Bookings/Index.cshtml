@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BookRoom.Models.Bookings>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Ny Booking", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bookingfrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bookingto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.checkedin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.checkedout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rooms.RoomsID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customers.CustomersID)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+
+    if (item.username == Session["CustomersID"].ToString())
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bookingfrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bookingto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.checkedin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.checkedout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rooms.RoomsID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customers.CustomersID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.BookingsID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BookingsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BookingsID })
+        </td>
+    </tr>
+    }
+}
+
+</table>
